@@ -3,8 +3,8 @@
 //
 #include "first.h"
 #include "log.h"
-//#include <iostream>
-//using namespace std;
+#include <iostream>
+using namespace std;
 
 class Human{
 private:
@@ -32,6 +32,7 @@ void print(){
     LOGD("this is c++ io print");
     Human human;
     human.setAge(20);
-    human.setName("xhp");
+    string name = "xhp";
+    human.setName(const_cast<char *>(name.c_str()));
     LOGD("Human name=%s,age=%d",human.getName(),human.getAge());
 }
