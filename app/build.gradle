@@ -25,9 +25,9 @@ android {
         }
     }
     //如果动态库放入src/main/jniLibs下,则不需要设置该项
-    sourceSets{
-        main{
-            jniLibs.srcDirs=['libs']
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
         }
     }
     externalNativeBuild {

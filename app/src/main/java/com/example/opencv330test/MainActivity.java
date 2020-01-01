@@ -2,11 +2,14 @@ package com.example.opencv330test;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,8 +18,9 @@ import org.opencv.android.Utils;
 import org.opencv.core.Mat;
 import org.opencv.imgproc.Imgproc;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "MainActivity";
+    private Button btnFace;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
         TextView tv_string = findViewById(R.id.tv_string);
         tv_string.setText(NDKUtils.stringFromJNI());
         final ImageView iv_img = findViewById(R.id.iv_img);
+        btnFace = findViewById(R.id.btn_face);
+        btnFace.setOnClickListener(this);
         new AsyncTask<Void, Void, Bitmap>() {
 
             @Override
@@ -58,6 +64,17 @@ public class MainActivity extends AppCompatActivity {
             dst.release();
         } else {
             Log.w(TAG, "could not load OpenCV Libraries");
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_face:
+                startActivity(new Intent(this, FaceDetectionActivity.class));
+                break;
+            default:
+                break;
         }
     }
 }

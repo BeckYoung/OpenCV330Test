@@ -23,10 +23,13 @@ add_library( # Sets the name of the library.
              # Sets the library as a shared library.
              SHARED
 
-             # Provides a relative path to your source file(s).
-             src/main/cpp/native-lib.cpp src/main/cpp/first.cpp)
+             src/main/cpp/DetectionBasedTracker_jni.cpp
+             src/main/cpp/native-lib.cpp
+             src/main/cpp/first.cpp)
 
-
+# Enable C++11
+#set(CMAKE_CXX_STANDARD 11)
+#set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11")
 
 include_directories(src/main/cpp/include)#包含OpenCv的头文件目录
@@ -40,14 +43,7 @@ set_target_properties( lib_opencv
 
 find_library( # Sets the name of the path variable.
               log-lib
-
-              # Specifies the name of the NDK library that
-              # you want CMake to locate.
               log )
-
-# Specifies libraries CMake should link to your target library. You
-# can link multiple libraries, such as libraries you define in this
-# build script, prebuilt third-party libraries, or system libraries.
 
 target_link_libraries( # Specifies the target library.
                        native-lib lib_opencv
